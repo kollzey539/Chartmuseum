@@ -41,7 +41,7 @@ service:
   port: 80
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
   annotations: 
     kubernetes.io/tls-acme: "false"
@@ -56,6 +56,24 @@ ingress:
     - secretName: hash-store-tls
       hosts:
         - hash-store.rigettidemo.com
+
+
+env:
+  - name: AWS_REGION
+    value: us-east-1
+  - name: S3_BUCKET_NAME
+    value: hash-store-rigetti-demo
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        key: AWS_ACCESS_KEY_ID
+        name: hash-store-aws-creds
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        key: AWS_SECRET_ACCESS_KEY
+        name: hash-store-aws-creds
+
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
