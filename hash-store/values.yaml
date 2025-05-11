@@ -42,7 +42,9 @@ service:
 
 ingress:
   enabled: true
-  className: ""
+  class: ngnx
+  domain: hash-store.rigettidemo.com
+  secretName: hash-store-tls
   annotations: 
     kubernetes.io/tls-acme: "false"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -52,10 +54,7 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
-  tls: 
-    - secretName: hash-store-tls
-      hosts:
-        - hash-store.rigettidemo.com
+
 
 
 env:
