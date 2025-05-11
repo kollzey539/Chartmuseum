@@ -43,9 +43,10 @@ service:
 ingress:
   enabled: false
   className: ""
-  annotations: {}
+  annotations: 
     kubernetes.io/tls-acme: "false"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+
   hosts:
     - host: hash-store.rigettidemo.com
       paths:
